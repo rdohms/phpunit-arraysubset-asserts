@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<ruleset>
+    <arg name="basepath" value="." />
+    <arg name="extensions" value="php" /> <!-- which extensions to look for -->
+    <arg name="parallel" value="80" /> <!-- how many parallel processes to run -->
+    <arg name="colors" />
+    <arg name="cache" value=".phpcs.cache" /> <!-- cache the results and don't commit them -->
+    <arg value="np" /> <!-- n = ignore warnings, p = show progress -->
+
+    <file>src</file>
+    <file>tests</file>
+
+    <rule ref="DMS"/>
+</ruleset>

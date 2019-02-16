@@ -1,0 +1,11 @@
+includes:
+    - vendor/phpstan/phpstan-phpunit/extension.neon
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+    - vendor/phpstan/phpstan-beberlei-assert/extension.neon
+
+parameters:
+
+    level: 7
+    paths:
+        - src
+        - tests

@@ -28,6 +28,9 @@
     "autoload-dev": {
         "psr-4": {
             "DMS\\PHPUnitExtensions\\ArraySubset\\Tests\\": "tests"
-        }
+        },
+        "classmap": [
+            "vendor/phpunit/phpunit/tests/"
+        ]
     }
 }

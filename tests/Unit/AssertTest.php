@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace DMS\PHPUnitExtensions\ArraySubset\Tests\Unit;
 
 use DMS\PHPUnitExtensions\ArraySubset\Assert;
+use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\Exception;
 
 final class AssertTest extends TestCase
 {
@@ -19,7 +19,7 @@ final class AssertTest extends TestCase
     public function testAssertArraySubsetThrowsExceptionForInvalidSubset(): void
     {
         $this->expectException(ExpectationFailedException::class);
-        Assert::assertArraySubset([6,7], [1,2,3,4,5,6]);
+        Assert::assertArraySubset([6, 7], [1, 2, 3, 4, 5, 6]);
     }
 
     public function testAssertArraySubsetThrowsExceptionForInvalidSubsetArgument(): void
@@ -36,6 +36,6 @@ final class AssertTest extends TestCase
 
     public function testAssertArraySubsetDoesNothingForValidScenario(): void
     {
-        Assert::assertArraySubset([1,2], [1,2,3]);
+        Assert::assertArraySubset([1, 2], [1, 2, 3]);
     }
 }

@@ -6,19 +6,19 @@ namespace DMS\PHPUnitExtensions\ArraySubset;
 use ArrayAccess;
 use DMS\PHPUnitExtensions\ArraySubset\Constraint\ArraySubset;
 use Exception;
-use function is_array;
 use PHPUnit\Framework\Assert as PhpUnitAssert;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Util\InvalidArgumentHelper;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
+use function is_array;
 
 trait ArraySubsetAsserts
 {
     /**
      * Asserts that an array has a specified subset.
      *
-     * @param array|ArrayAccess $subset
-     * @param array|ArrayAccess $array
+     * @param array|ArrayAccess|mixed[] $subset
+     * @param array|ArrayAccess|mixed[] $array
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException

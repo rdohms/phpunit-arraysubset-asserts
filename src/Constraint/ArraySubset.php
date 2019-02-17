@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace DMS\PHPUnitExtensions\ArraySubset\Constraint;
 
+use ArrayAccess;
 use ArrayObject;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\ExpectationFailedException;
@@ -23,7 +24,7 @@ use function var_export;
 final class ArraySubset extends Constraint
 {
     /**
-     * @var iterable
+     * @var iterable|mixed[]
      */
     private $subset;
     /**
@@ -31,6 +32,9 @@ final class ArraySubset extends Constraint
      */
     private $strict;
 
+    /**
+     * @param mixed[] $subset
+     */
     public function __construct(iterable $subset, bool $strict = false)
     {
         $this->strict = $strict;
@@ -46,6 +50,9 @@ final class ArraySubset extends Constraint
      * If $returnResult is true, the result of the evaluation is returned as
      * a boolean value instead: true in case of success, false in case of a
      * failure.
+     *
+     * @param mixed[]|ArrayAccess $other
+     * @return mixed[]|null|bool
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
@@ -103,6 +110,11 @@ final class ArraySubset extends Constraint
         return 'an array ' . $this->toString();
     }
 
+    /**
+     * @param mixed[]|iterable $other
+     *
+     * @return mixed[]
+     */
     private function toArray(iterable $other): array
     {
         if (is_array($other)) {

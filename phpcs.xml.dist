@@ -11,4 +11,8 @@
     <file>tests</file>
 
     <rule ref="DMS"/>
+
+    <rule ref="SlevomatCodingStandard.ControlStructures.DisallowEqualOperators.DisallowedEqualOperator">
+        <exclude-pattern>src/Constraint/ArraySubset.php</exclude-pattern>
+    </rule>
 </ruleset>

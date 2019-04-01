@@ -10,7 +10,7 @@ The initial version contained here is copied over from phpunit and is heavilybas
 Simply use it by importing it with Composer
 
 ```
-composer require dms/phpunit-arraysubset-asserts
+composer require --dev dms/phpunit-arraysubset-asserts
 ```
 
 ## Usage

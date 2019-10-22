@@ -34,12 +34,20 @@ final class AssertTest extends TestCase
     
     public function testWithTrait(): void
     {
-        self::assertArraySubset(['bar' => 0], ['bar' => '0'], true);
+        $expectedSubset = ['bar' => 0];
+
+        $content = ['bar' => '0'];
+
+        self::assertArraySubset($expectedSubset, $content, true);
     }
 
     public function testWithDirectCall(): void
     {
-        Assert::assertArraySubset(['bar' => 0], ['bar' => '0'], true);
+        $expectedSubset = ['bar' => 0];
+
+        $content = ['bar' => '0'];
+
+        Assert::assertArraySubset($expectedSubset, $content, true);
     }
 }
 

@@ -18,8 +18,6 @@ trait ArraySubsetAsserts
      *
      * @param array|ArrayAccess|mixed[] $subset
      * @param array|ArrayAccess|mixed[] $array
-     * @param bool                      $checkForObjectIdentity
-     * @param string                    $message
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException

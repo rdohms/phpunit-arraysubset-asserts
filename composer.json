@@ -3,7 +3,7 @@
     "description": "This package provides Array Subset and related asserts once depracated in PHPunit 8",
     "type": "library",
     "require": {
-        "phpunit/phpunit": "^8.0",
+        "phpunit/phpunit": "^8.4",
         "php": "^7.2"
     },
     "license": "MIT",

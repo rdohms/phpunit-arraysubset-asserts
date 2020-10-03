@@ -1,0 +1,33 @@
+name: CI
+
+on: [ push ]
+
+jobs:
+
+  build-test:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php-versions: [ '7.3', '7.4', '8.0' ]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+
+      - name: Installing dependencies
+        id: install
+        run: composer install --no-interaction --no-progress --no-suggest --prefer-dist
+
+      - name: Unit tests
+        run: vendor/bin/phpunit
+
+      - name: Code sniffer tests
+        run: vendor/bin/phpcs

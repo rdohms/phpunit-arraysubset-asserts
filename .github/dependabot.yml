@@ -1,0 +1,22 @@
+version: 2
+updates:
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    labels:
+      - "ci"
+      - "dependencies"
+    reviewers:
+      - "rdohms"
+
+  - package-ecosystem: "composer"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    labels:
+      - "dependencies"
+    reviewers:
+      - "rdohms"
+

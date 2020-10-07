@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace DMS\PHPUnitExtensions\ArraySubset\Tests\Unit\Constraint;
 
-use DMS\PHPUnitExtensions\ArraySubset\ArrayAccessible;
 use ArrayObject;
 use Countable;
+use DMS\PHPUnitExtensions\ArraySubset\ArrayAccessible;
 use DMS\PHPUnitExtensions\ArraySubset\Constraint\ArraySubset;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\SelfDescribing;

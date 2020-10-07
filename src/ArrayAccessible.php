@@ -1,45 +1,69 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 namespace DMS\PHPUnitExtensions\ArraySubset;
 
 use ArrayAccess;
 use ArrayIterator;
 use IteratorAggregate;
+use Traversable;
+use function array_key_exists;
 
 class ArrayAccessible implements ArrayAccess, IteratorAggregate
 {
+    /**
+     * @var mixed[]
+     */
     private $array;
 
+    /**
+     * @param mixed[] $array
+     */
     public function __construct(array $array = [])
     {
         $this->array = $array;
     }
 
-    public function offsetExists($offset)
+    /**
+     * @param mixed $offset
+     */
+    public function offsetExists($offset): bool
     {
-        return \array_key_exists($offset, $this->array);
+        return array_key_exists($offset, $this->array);
     }
 
+    /**
+     * @param mixed $offset
+     *
+     * @return mixed
+     */
     public function offsetGet($offset)
     {
         return $this->array[$offset];
     }
 
+    /**
+     * @param mixed $offset
+     * @param mixed $value
+     */
     public function offsetSet($offset, $value): void
     {
-        if (null === $offset) {
+        if ($offset === null) {
             $this->array[] = $value;
         } else {
             $this->array[$offset] = $value;
         }
     }
 
+    /**
+     * @param mixed $offset
+     */
     public function offsetUnset($offset): void
     {
         unset($this->array[$offset]);
     }
 
-    public function getIterator()
+    public function getIterator(): Traversable
     {
         return new ArrayIterator($this->array);
     }

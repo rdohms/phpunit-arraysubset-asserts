@@ -7,11 +7,13 @@ use ArrayAccess;
 use ArrayObject;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\ExpectationFailedException;
+use PHPUnit\SebastianBergmann\Comparator\ComparisonFailure as Phar_ComparisonFailure;
 use SebastianBergmann\Comparator\ComparisonFailure;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Traversable;
 
 use function array_replace_recursive;
+use function class_exists;
 use function is_array;
 use function iterator_to_array;
 use function var_export;
@@ -81,7 +83,14 @@ final class ArraySubset extends Constraint
             return null;
         }
 
-        $f = new ComparisonFailure(
+        // Support use of this library when running PHPUnit as a Phar.
+        if (class_exists(Phar_ComparisonFailure::class) === true) {
+            $class = Phar_ComparisonFailure::class;
+        } else {
+            $class = ComparisonFailure::class;
+        }
+
+        $f = new $class(
             $patched,
             $other,
             var_export($patched, true),

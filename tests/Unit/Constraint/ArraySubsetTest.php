@@ -13,6 +13,7 @@ use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Traversable;
+
 use function sprintf;
 
 final class ArraySubsetTest extends TestCase
@@ -53,13 +54,13 @@ final class ArraySubsetTest extends TestCase
     /**
      * @param array|Traversable|mixed[] $subset
      * @param array|Traversable|mixed[] $other
-     * @param bool                      $strict
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
+     *
      * @dataProvider evaluateDataProvider
      */
-    public function testEvaluate(bool $expected, $subset, $other, $strict): void
+    public function testEvaluate(bool $expected, $subset, $other, bool $strict): void
     {
         $constraint = new ArraySubset($subset, $strict);
 

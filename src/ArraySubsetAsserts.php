@@ -9,6 +9,7 @@ use Exception;
 use PHPUnit\Framework\Assert as PhpUnitAssert;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\InvalidArgumentException;
+
 use function is_array;
 
 trait ArraySubsetAsserts
@@ -31,12 +32,14 @@ trait ArraySubsetAsserts
                 'array or ArrayAccess'
             );
         }
+
         if (! (is_array($array) || $array instanceof ArrayAccess)) {
             throw InvalidArgumentException::create(
                 2,
                 'array or ArrayAccess'
             );
         }
+
         $constraint = new ArraySubset($subset, $checkForObjectIdentity);
         PhpUnitAssert::assertThat($array, $constraint, $message);
     }

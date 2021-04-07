@@ -14,7 +14,7 @@
         <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint"/>
     </rule>
 
-<!--    <rule ref="SlevomatCodingStandard.ControlStructures.DisallowEqualOperators">-->
-<!--        <exclude-pattern>src/Constraint/ArraySubset.php</exclude-pattern>-->
-<!--    </rule>-->
+    <rule ref="SlevomatCodingStandard.Operators.DisallowEqualOperators.DisallowedEqualOperator">
+        <exclude-pattern>src/Constraint/ArraySubset.php</exclude-pattern>
+    </rule>
 </ruleset>

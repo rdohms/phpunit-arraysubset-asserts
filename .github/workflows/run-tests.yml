@@ -9,6 +9,8 @@ on:
       - "*"
   schedule:
   - cron: '0 0 * * *'
+  # Allow manually triggering the workflow.
+  workflow_dispatch:
 
 jobs:
   php-tests:

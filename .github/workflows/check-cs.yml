@@ -7,6 +7,8 @@ on:
   pull_request:
     branches:
       - "*"
+  # Allow manually triggering the workflow.
+  workflow_dispatch:
 
 jobs:
   fix-style:

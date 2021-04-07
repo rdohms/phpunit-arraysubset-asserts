@@ -7,6 +7,7 @@
     <arg name="cache" value=".phpcs.cache" /> <!-- cache the results and don't commit them -->
     <arg value="np" /> <!-- n = ignore warnings, p = show progress -->
 
+    <file>assertarraysubset-autoload.php</file>
     <file>src</file>
     <file>tests</file>
 
@@ -15,6 +16,30 @@
     </rule>
 
     <rule ref="SlevomatCodingStandard.Operators.DisallowEqualOperators.DisallowedEqualOperator">
-        <exclude-pattern>src/Constraint/ArraySubset.php</exclude-pattern>
+        <exclude-pattern>src/Constraint/ArraySubset\.php</exclude-pattern>
     </rule>
+
+    <!-- BC-layer: exclude rules which would prevent code from being PHP cross-version compatible. -->
+    <rule ref="Squiz.Classes.ClassFileName.NoMatch">
+        <exclude-pattern>assertarraysubset-autoload\.php</exclude-pattern>
+        <exclude-pattern>src/ArraySubsetAssertsEmpty\.php</exclude-pattern>
+        <exclude-pattern>src/AssertFallThrough\.php</exclude-pattern>
+    </rule>
+    <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes.DeclareStrictTypesMissing">
+        <exclude-pattern>assertarraysubset-autoload\.php</exclude-pattern>
+        <exclude-pattern>src/ArraySubsetAssertsEmpty\.php</exclude-pattern>
+        <exclude-pattern>src/AssertFallThrough\.php</exclude-pattern>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly.ReferenceViaFullyQualifiedName">
+        <exclude-pattern>assertarraysubset-autoload\.php</exclude-pattern>
+    </rule>
+    <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint">
+        <exclude-pattern>assertarraysubset-autoload\.php</exclude-pattern>
+        <exclude-pattern>src/AssertFallThrough\.php</exclude-pattern>
+    </rule>
+    <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingNativeTypeHint">
+        <exclude-pattern>assertarraysubset-autoload\.php</exclude-pattern>
+        <exclude-pattern>src/AssertFallThrough\.php</exclude-pattern>
+    </rule>
+
 </ruleset>

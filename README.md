@@ -13,6 +13,15 @@ Simply use it by importing it with Composer
 composer require --dev dms/phpunit-arraysubset-asserts
 ```
 
+> :bulb: The package can be safely required on PHP 5.4 to current in combination with PHPUnit 4.8.36/5.7.21 to current.
+>
+> When the PHPUnit `assertArraySubset()` method is natively available (PHPUnit 4.x - 8.x), the PHPUnit native functionality will be used.
+> For PHPUnit 9 and higher, the extension will kick in and polyfill the functionality which was removed from PHPUnit.
+>
+> Note: PHPUnit 8.x will show deprecation notices about the use of the `assertArraySubset()` method.
+> With this extension in place, those can be safely ignored.
+
+
 ## Usage
 
 You have two options to use this in your classes: either directly as a static call or as a trait if you wish to keep existing references working.

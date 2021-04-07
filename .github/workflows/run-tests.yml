@@ -19,7 +19,7 @@ jobs:
 
     strategy:
       matrix:
-        php: [8.*, 7.4, 7.3]
+        php: [8.x, 7.4, 7.3]
         dependency-version: [prefer-lowest, prefer-stable]
 
     name: P${{ matrix.php }} - ${{ matrix.dependency-version }}
@@ -34,7 +34,7 @@ jobs:
         php-version: ${{ matrix.php }}
         coverage: none
         tools: composer
-        
+
     - name: Install dependencies
       run: |
         composer update --${{ matrix.dependency-version }} --prefer-dist --no-progress

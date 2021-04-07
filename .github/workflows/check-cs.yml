@@ -27,11 +27,14 @@ jobs:
       with:
         php-version: 7.4
         coverage: none
-        tools: composer
+        tools: composer, cs2pr
 
     - name: Install dependencies
       run: |
         composer update --prefer-dist --no-suggest --no-progress
 
     - name: Check Code Style
-      run: vendor/bin/phpcs
+      run: vendor/bin/phpcs --report-full --report-checkstyle=./phpcs-report.xml
+
+    - name: Show PHPCS results in PR
+      run: cs2pr ./phpcs-report.xml

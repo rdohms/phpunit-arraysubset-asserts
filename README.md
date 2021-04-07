@@ -17,21 +17,20 @@ composer require --dev dms/phpunit-arraysubset-asserts
 
 You have two options to use this in your classes: either directly as a static call or as a trait if you wish to keep existing references working.
 
+### Trait use example
+
 ```php
 <?php
-declare(strict_types=1);
 
-namespace DMS\Tests;
+namespace Your\Package\Tests;
 
-use DMS\PHPUnitExtensions\ArraySubset\Assert;
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use PHPUnit\Framework\TestCase;
 
-
-final class AssertTest extends TestCase
+final class ExampleTest extends TestCase
 {
     use ArraySubsetAsserts;
-    
+
     public function testWithTrait(): void
     {
         $expectedSubset = ['bar' => 0];
@@ -39,8 +38,26 @@ final class AssertTest extends TestCase
         $content = ['bar' => '0'];
 
         self::assertArraySubset($expectedSubset, $content, true);
-    }
 
+        $content = ['foo' => '1'];
+
+        $this->assertArraySubset($expectedSubset, $content, true);
+    }
+}
+```
+
+### Static class method example
+
+```php
+<?php
+
+namespace Your\Package\Tests;
+
+use DMS\PHPUnitExtensions\ArraySubset\Assert;
+use PHPUnit\Framework\TestCase;
+
+final class ExampleTest extends TestCase
+{
     public function testWithDirectCall(): void
     {
         $expectedSubset = ['bar' => 0];
@@ -50,5 +67,4 @@ final class AssertTest extends TestCase
         Assert::assertArraySubset($expectedSubset, $content, true);
     }
 }
-
 ```

@@ -7,6 +7,7 @@ use ArrayAccess;
 use ArrayIterator;
 use IteratorAggregate;
 use Traversable;
+
 use function array_key_exists;
 
 class ArrayAccessible implements ArrayAccess, IteratorAggregate
@@ -63,6 +64,9 @@ class ArrayAccessible implements ArrayAccess, IteratorAggregate
         unset($this->array[$offset]);
     }
 
+    /**
+     * @return mixed[]
+     */
     public function getIterator(): Traversable
     {
         return new ArrayIterator($this->array);

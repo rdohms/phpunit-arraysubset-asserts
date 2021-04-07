@@ -10,6 +10,7 @@ use PHPUnit\Framework\ExpectationFailedException;
 use SebastianBergmann\Comparator\ComparisonFailure;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Traversable;
+
 use function array_replace_recursive;
 use function is_array;
 use function iterator_to_array;
@@ -27,6 +28,7 @@ final class ArraySubset extends Constraint
      * @var iterable|mixed[]
      */
     private $subset;
+
     /**
      * @var bool
      */
@@ -52,7 +54,8 @@ final class ArraySubset extends Constraint
      * failure.
      *
      * @param mixed[]|ArrayAccess $other
-     * @return mixed[]|null|bool
+     *
+     * @return mixed[]|bool|null
      *
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException
@@ -69,9 +72,11 @@ final class ArraySubset extends Constraint
         } else {
             $result = $other == $patched;
         }
+
         if ($returnResult) {
             return $result;
         }
+
         if ($result) {
             return null;
         }
@@ -120,12 +125,15 @@ final class ArraySubset extends Constraint
         if (is_array($other)) {
             return $other;
         }
+
         if ($other instanceof ArrayObject) {
             return $other->getArrayCopy();
         }
+
         if ($other instanceof Traversable) {
             return iterator_to_array($other);
         }
+
         // Keep BC even if we know that array would not be the expected one
         return (array) $other;
     }

@@ -31,11 +31,6 @@ if (\class_exists('DMS\PHPUnitExtensions\ArraySubset\Autoload', false) === false
                         // PHPUnit >= 9.0.0.
                         require_once __DIR__ . '/src/ArraySubsetAsserts.php';
 
-                        // Straight away load the other classes needed as well.
-                        // These should only ever be loaded in this context anyway.
-                        require_once __DIR__ . '/src/ArrayAccessible.php';
-                        require_once __DIR__ . '/src/Constraint/ArraySubset.php';
-
                         return true;
                     }
 
@@ -56,6 +51,34 @@ if (\class_exists('DMS\PHPUnitExtensions\ArraySubset\Autoload', false) === false
                     require_once __DIR__ . '/src/AssertFallThrough.php';
 
                     return true;
+
+                /*
+                 * Handle arbitrary additional classes via PSR-4, but only allow loading on PHPUnit >= 9.0.0,
+                 * as additional classes should only ever _need_ to be loaded when using PHPUnit >= 9.0.0.
+                 */
+                default:
+                    if (\method_exists('\PHPUnit\Framework\Assert', 'assertArraySubset') === true) {
+                        // PHPUnit < 9.0.0.
+                        throw new \RuntimeException(
+                            \sprintf(
+                                'Using class "%s" is only supported in combination with PHPUnit >= 9.0.0',
+                                $className
+                            )
+                        );
+                    }
+
+                    // PHPUnit >= 9.0.0.
+                    $file = \realpath(
+                        __DIR__ . \DIRECTORY_SEPARATOR
+                        . 'src' . \DIRECTORY_SEPARATOR
+                        . \strtr(\substr($className, 33), '\\', \DIRECTORY_SEPARATOR) . '.php'
+                    );
+
+                    if (\file_exists($file) === true) {
+                        require_once $file;
+
+                        return true;
+                    }
             }
 
             return false;

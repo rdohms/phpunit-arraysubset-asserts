@@ -34,6 +34,7 @@
     </rule>
     <rule ref="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly.ReferenceViaFullyQualifiedName">
         <exclude-pattern>assertarraysubset-autoload\.php</exclude-pattern>
+        <exclude-pattern>tests/Availability/*\.php</exclude-pattern>
     </rule>
     <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint">
         <exclude-pattern>assertarraysubset-autoload\.php</exclude-pattern>

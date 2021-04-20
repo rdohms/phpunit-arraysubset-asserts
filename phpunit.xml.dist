@@ -7,11 +7,12 @@
          beStrictAboutOutputDuringTests="true"
          beStrictAboutTodoAnnotatedTests="true"
          beStrictAboutChangesToGlobalState="true"
-         bootstrap="vendor/autoload.php"
+         bootstrap="tests/bootstrap.php"
 >
     <testsuites>
         <testsuite name="unit">
-            <directory>tests</directory>
+            <directory>tests/Availability</directory>
+            <directory phpVersion="7.3.0" phpVersionOperator=">=">tests/Unit</directory>
         </testsuite>
     </testsuites>
 

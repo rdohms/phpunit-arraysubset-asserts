@@ -8,6 +8,9 @@ use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @requires PHPUnit >= 9
+ */
 final class AssertTest extends TestCase
 {
     public function testAssertArraySubsetPassesStrictConfig(): void

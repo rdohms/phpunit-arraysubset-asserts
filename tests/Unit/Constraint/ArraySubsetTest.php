@@ -16,6 +16,9 @@ use Traversable;
 
 use function sprintf;
 
+/**
+ * @requires PHPUnit >= 9
+ */
 final class ArraySubsetTest extends TestCase
 {
     /**

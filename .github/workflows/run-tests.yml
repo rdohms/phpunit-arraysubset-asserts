@@ -7,8 +7,6 @@ on:
   pull_request:
     branches:
       - "*"
-  schedule:
-  - cron: '0 0 * * *'
   # Allow manually triggering the workflow.
   workflow_dispatch:
 
@@ -51,6 +49,7 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: ${{ matrix.php }}
+        ini-values: error_reporting=E_ALL, display_errors=On
         coverage: none
         tools: composer
 

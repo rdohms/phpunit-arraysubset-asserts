@@ -7,6 +7,10 @@
          beStrictAboutOutputDuringTests="true"
          beStrictAboutTodoAnnotatedTests="true"
          beStrictAboutChangesToGlobalState="true"
+         convertErrorsToExceptions="true"
+         convertWarningsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertDeprecationsToExceptions="true"
          bootstrap="tests/bootstrap.php"
 >
     <testsuites>

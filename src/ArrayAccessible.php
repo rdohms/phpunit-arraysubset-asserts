@@ -6,6 +6,7 @@ namespace DMS\PHPUnitExtensions\ArraySubset;
 use ArrayAccess;
 use ArrayIterator;
 use IteratorAggregate;
+use ReturnTypeWillChange; // phpcs:ignore SlevomatCodingStandard.Namespaces.UnusedUses.UnusedUse
 use Traversable;
 
 use function array_key_exists;
@@ -38,6 +39,7 @@ class ArrayAccessible implements ArrayAccess, IteratorAggregate
      *
      * @return mixed
      */
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->array[$offset];

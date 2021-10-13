@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace DMS\PHPUnitExtensions\ArraySubset;
@@ -6,7 +7,7 @@ namespace DMS\PHPUnitExtensions\ArraySubset;
 use ArrayAccess;
 use ArrayIterator;
 use IteratorAggregate;
-use ReturnTypeWillChange; // phpcs:ignore SlevomatCodingStandard.Namespaces.UnusedUses.UnusedUse
+use ReturnTypeWillChange;
 use Traversable;
 
 use function array_key_exists;

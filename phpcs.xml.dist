@@ -13,6 +13,8 @@
 
     <rule ref="DMS">
         <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint"/>
+        <exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint"/>
+        <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingNativeTypeHint"/>
     </rule>
 
     <rule ref="SlevomatCodingStandard.Operators.DisallowEqualOperators.DisallowedEqualOperator">
@@ -34,15 +36,6 @@
     </rule>
     <rule ref="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly.ReferenceViaFullyQualifiedName">
         <exclude-pattern>assertarraysubset-autoload\.php</exclude-pattern>
-        <exclude-pattern>tests/Availability/*\.php</exclude-pattern>
-    </rule>
-    <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint">
-        <exclude-pattern>assertarraysubset-autoload\.php</exclude-pattern>
-        <exclude-pattern>src/AssertFallThrough\.php</exclude-pattern>
-    </rule>
-    <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingNativeTypeHint">
-        <exclude-pattern>assertarraysubset-autoload\.php</exclude-pattern>
-        <exclude-pattern>src/AssertFallThrough\.php</exclude-pattern>
         <exclude-pattern>tests/Availability/*\.php</exclude-pattern>
     </rule>
 

@@ -1,0 +1,38 @@
+name: Releases
+
+on: 
+  push:
+    tags:
+    - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2.3.4
+      with:
+        ref: ${{ github.ref }}
+    - name: Pick Release Version from git tag
+      id: version
+      run: |
+        echo "::set-output name=version::${GITHUB_REF#refs/*/}"
+    - name: Debug Release Version
+      run: echo "Extracted this version ${{ steps.version.outputs.version }}"
+    - name: Pick Changelog from git tag
+      id: changelog
+      run: | 
+        OUTPUT=$(git tag -l --format='%(contents:body)' ${GITHUB_REF#refs/*/})
+        OUTPUT="${OUTPUT//'%'/'%25'}"
+        OUTPUT="${OUTPUT//$'\n'/'%0A'}"
+        OUTPUT="${OUTPUT//$'\r'/'%0D'}"
+        echo "::set-output name=body::$OUTPUT"
+    - name: Debug Changelog
+      run: echo "Extracted this Changelog \n ${{ steps.changelog.outputs.body }}"
+    - uses: ncipollo/release-action@v1
+      with:
+        body: ${{ steps.changelog.outputs.body }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        name: ${{ steps.version.outputs.version }}
+        tag: ${{ steps.version.outputs.version }}
+        allowUpdates: true

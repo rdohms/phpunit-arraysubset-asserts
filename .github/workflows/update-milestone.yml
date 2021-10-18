@@ -2,7 +2,7 @@ name: 'Update Milestone on Release'
 
 on:
   release:
-    types: [published]
+    types: [released]
 
 jobs:
   update-milestone-on-release:

@@ -31,7 +31,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        composer update --prefer-dist --no-suggest --no-progress
+        composer update --prefer-dist --no-suggest --no-progress --no-interaction
 
     - name: Check Code Style
       run: vendor/bin/phpcs --report-full --report-checkstyle=./phpcs-report.xml

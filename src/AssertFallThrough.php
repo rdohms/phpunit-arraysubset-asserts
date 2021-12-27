@@ -5,7 +5,7 @@ namespace DMS\PHPUnitExtensions\ArraySubset;
 use PHPUnit\Framework\Assert as PhpUnitAssert;
 
 /**
- * Assert class for use with PHPUnit 4.x - 8.x.
+ * Assert class for use with PHPUnit 4.x - 7.x.
  *
  * The method in this class will fall through to PHPUnit itself and use the PHPUnit
  * native `assertArraySubset()` method.
@@ -23,7 +23,7 @@ final class Assert
      * @param string                    $message
      *
      * @throws ExpectationFailedException
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      * @throws Exception
      */
     public static function assertArraySubset($subset, $array, $checkForObjectIdentity = false, $message = '')

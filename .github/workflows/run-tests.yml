@@ -24,6 +24,9 @@ jobs:
         experimental: [false]
 
         include:
+          - php: '7.2'
+            dependency-version: 'prefer-lowest'
+            experimental: false
           - php: '7.3'
             dependency-version: 'prefer-lowest'
             experimental: false
@@ -58,9 +61,13 @@ jobs:
     - name: 'Composer: remove CS dependency'
       run: composer remove --dev --no-update dms/coding-standard
 
-    - name: 'Composer: update PHPUnit for testing lowest'
-      if: ${{ matrix.dependency-version == 'prefer-lowest' }}
-      run: composer require --no-update phpunit/phpunit:"^9.0"
+    - name: 'Composer: update PHPUnit for testing lowest (PHP 7.2)'
+      if: ${{ matrix.dependency-version == 'prefer-lowest' && matrix.php == '7.2' }}
+      run: composer require --no-update phpunit/phpunit:"^8.0" --no-interaction
+
+    - name: 'Composer: update PHPUnit for testing lowest (PHP 7.3+)'
+      if: ${{ matrix.dependency-version == 'prefer-lowest' && matrix.php != '7.2' }}
+      run: composer require --no-update phpunit/phpunit:"^9.0" --no-interaction
 
     - name: Install dependencies - normal
       if: ${{ matrix.php < 8.1 }}

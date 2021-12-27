@@ -2,6 +2,9 @@
 
 namespace DMS\PHPUnitExtensions\ArraySubset;
 
+use PHPUnit\Runner\Version as PHPUnit_Version;
+use PHPUnit_Runner_Version;
+
 if (\class_exists('DMS\PHPUnitExtensions\ArraySubset\Autoload', false) === false) {
 
     /**
@@ -25,49 +28,51 @@ if (\class_exists('DMS\PHPUnitExtensions\ArraySubset\Autoload', false) === false
                 return false;
             }
 
+            $loadPolyfill = \version_compare(self::getPHPUnitVersion(), '8.0.0', '>=');
+
             switch ($className) {
                 case 'DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts':
-                    if (\method_exists('\PHPUnit\Framework\Assert', 'assertArraySubset') === false) {
-                        // PHPUnit >= 9.0.0.
+                    if ($loadPolyfill === true) {
+                        // PHPUnit >= 8.0.0.
                         require_once __DIR__ . '/src/ArraySubsetAsserts.php';
 
                         return true;
                     }
 
-                    // PHPUnit < 9.0.0.
+                    // PHPUnit < 8.0.0.
                     require_once __DIR__ . '/src/ArraySubsetAssertsEmpty.php';
 
                     return true;
 
                 case 'DMS\PHPUnitExtensions\ArraySubset\Assert':
-                    if (\method_exists('\PHPUnit\Framework\Assert', 'assertArraySubset') === false) {
-                        // PHPUnit >= 9.0.0.
+                    if ($loadPolyfill === true) {
+                        // PHPUnit >= 8.0.0.
                         require_once __DIR__ . '/src/Assert.php';
 
                         return true;
                     }
 
-                    // PHPUnit < 9.0.0.
+                    // PHPUnit < 8.0.0.
                     require_once __DIR__ . '/src/AssertFallThrough.php';
 
                     return true;
 
                 /*
-                 * Handle arbitrary additional classes via PSR-4, but only allow loading on PHPUnit >= 9.0.0,
-                 * as additional classes should only ever _need_ to be loaded when using PHPUnit >= 9.0.0.
+                 * Handle arbitrary additional classes via PSR-4, but only allow loading on PHPUnit >= 8.0.0,
+                 * as additional classes should only ever _need_ to be loaded when using PHPUnit >= 8.0.0.
                  */
                 default:
-                    if (\method_exists('\PHPUnit\Framework\Assert', 'assertArraySubset') === true) {
+                    if ($loadPolyfill === false) {
                         // PHPUnit < 9.0.0.
                         throw new \RuntimeException(
                             \sprintf(
-                                'Using class "%s" is only supported in combination with PHPUnit >= 9.0.0',
+                                'Using class "%s" is only supported in combination with PHPUnit >= 8.0.0',
                                 $className
                             )
                         );
                     }
 
-                    // PHPUnit >= 9.0.0.
+                    // PHPUnit >= 8.0.0.
                     $file = \realpath(
                         __DIR__ . \DIRECTORY_SEPARATOR
                         . 'src' . \DIRECTORY_SEPARATOR
@@ -82,6 +87,27 @@ if (\class_exists('DMS\PHPUnitExtensions\ArraySubset\Autoload', false) === false
             }
 
             return false;
+        }
+
+        /**
+         * Retrieve the PHPUnit version id.
+         *
+         * As both the pre-PHPUnit 6 class, as well as the PHPUnit 6+ class contain the `id()` function,
+         * this should work independently of whether or not another library may have aliased the class.
+         *
+         * @return string Version number as a string.
+         */
+        public static function getPHPUnitVersion()
+        {
+            if (\class_exists('\PHPUnit\Runner\Version')) {
+                return PHPUnit_Version::id();
+            }
+
+            if (\class_exists('\PHPUnit_Runner_Version')) {
+                return PHPUnit_Runner_Version::id();
+            }
+
+            return '0';
         }
     }
 

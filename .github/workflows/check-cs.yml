@@ -10,6 +10,12 @@ on:
   # Allow manually triggering the workflow.
   workflow_dispatch:
 
+# Cancels all previous workflow runs for the same branch that have not yet completed.
+concurrency:
+  # The concurrency group contains the workflow name and the branch name.
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   fix-style:
     name: Fix Code Style
@@ -20,7 +26,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2.3.4
+      uses: actions/checkout@v2.4.0
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
@@ -31,7 +37,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        composer update --prefer-dist --no-suggest --no-progress
+        composer update --prefer-dist --no-suggest --no-progress --no-interaction
 
     - name: Check Code Style
       run: vendor/bin/phpcs --report-full --report-checkstyle=./phpcs-report.xml

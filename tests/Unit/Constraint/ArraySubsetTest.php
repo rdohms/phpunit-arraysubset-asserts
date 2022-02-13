@@ -18,7 +18,7 @@ use Traversable;
 use function sprintf;
 
 /**
- * @requires PHPUnit >= 9
+ * @requires PHPUnit >= 8
  */
 final class ArraySubsetTest extends TestCase
 {
@@ -60,7 +60,7 @@ final class ArraySubsetTest extends TestCase
      * @param array|Traversable|mixed[] $other
      *
      * @throws ExpectationFailedException
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @dataProvider evaluateDataProvider
      */

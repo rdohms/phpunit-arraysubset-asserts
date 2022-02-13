@@ -61,7 +61,7 @@ final class ArraySubset extends Constraint
      * @return mixed[]|bool|null
      *
      * @throws ExpectationFailedException
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function evaluate($other, string $description = '', bool $returnResult = false): ?bool
     {
@@ -103,7 +103,7 @@ final class ArraySubset extends Constraint
     /**
      * Returns a string representation of the constraint.
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function toString(): string
     {
@@ -118,7 +118,7 @@ final class ArraySubset extends Constraint
      *
      * @param mixed $other evaluated value or object
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     protected function failureDescription($other): string
     {

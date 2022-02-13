@@ -16,7 +16,7 @@
     <testsuites>
         <testsuite name="unit">
             <directory>tests/Availability</directory>
-            <directory phpVersion="7.3.0" phpVersionOperator=">=">tests/Unit</directory>
+            <directory phpVersion="7.2.0" phpVersionOperator=">=">tests/Unit</directory>
         </testsuite>
     </testsuites>
 

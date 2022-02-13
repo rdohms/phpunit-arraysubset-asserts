@@ -6,7 +6,7 @@ use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Testing that the autoloading of the empty `ArraySubsetAsserts` trait for PHPUnit 4.x - 8.x works correctly.
+ * Testing that the autoloading of the empty `ArraySubsetAsserts` trait for PHPUnit 4.x - 7.x works correctly.
  *
  * {@internal The code in this file must be PHP cross-version compatible for PHP 5.4 - current!}
  */

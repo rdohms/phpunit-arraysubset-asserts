@@ -3,7 +3,7 @@
 namespace DMS\PHPUnitExtensions\ArraySubset;
 
 /**
- * ArraySubsetAsserts trait for use with PHPUnit 4.x - 8.x.
+ * ArraySubsetAsserts trait for use with PHPUnit 4.x - 7.x.
  *
  * As this trait is empty, calls to `assertArraySubset()` will automatically fall through
  * to PHPUnit itself and will use the PHPUnit native `assertArraySubset()` method.

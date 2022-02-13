@@ -10,7 +10,7 @@ use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @requires PHPUnit >= 9
+ * @requires PHPUnit >= 8
  */
 final class AssertTest extends TestCase
 {

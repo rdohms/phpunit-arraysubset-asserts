@@ -26,7 +26,7 @@ jobs:
         OUTPUT="${OUTPUT//'%'/'%25'}"
         OUTPUT="${OUTPUT//$'\n'/'%0A'}"
         OUTPUT="${OUTPUT//$'\r'/'%0D'}"
-        echo "::set-output name=body::$OUTPUT"
+        echo "body=$OUTPUT" >> $GITHUB_OUTPUT
     - name: Debug Changelog
       run: echo "Extracted this Changelog \n ${{ steps.changelog.outputs.body }}"
     - uses: ncipollo/release-action@v1

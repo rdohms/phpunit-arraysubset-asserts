@@ -24,5 +24,10 @@
         "psr-4": {
             "DMS\\PHPUnitExtensions\\ArraySubset\\Tests\\": "tests"
         }
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }

@@ -89,7 +89,7 @@ jobs:
     - name: Install dependencies - ignore platform reqs
       if: ${{ matrix.php >= 8.3 }}
       run: |
-        composer update --${{ matrix.dependency-version }} --prefer-dist --no-progress --ignore-platform-reqs --no-interaction
+        composer update --${{ matrix.dependency-version }} --prefer-dist --no-progress --ignore-platform-req=php+ --no-interaction
 
     - name: Execute Unit Tests
       run: vendor/bin/phpunit

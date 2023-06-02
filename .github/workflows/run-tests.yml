@@ -91,5 +91,8 @@ jobs:
       run: |
         composer update --${{ matrix.dependency-version }} --prefer-dist --no-progress --ignore-platform-req=php+ --no-interaction
 
+    - name: Migrate PHPUnit configuration if possible
+      run: vendor/bin/phpunit --migrate-configuration || echo '--migrate-configuration not available'
+
     - name: Execute Unit Tests
       run: vendor/bin/phpunit

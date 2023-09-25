@@ -105,7 +105,7 @@ final class ArraySubset extends Constraint
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function toString(): string
+    public function toString(bool $exportObjects = false): string
     {
         return 'has the subset ' . $this->exporter()->export($this->subset);
     }

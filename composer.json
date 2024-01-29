@@ -14,7 +14,7 @@
         }
     ],
     "require-dev": {
-        "dms/coding-standard": "^9"
+        "dms/coding-standard": "^9 || ^12"
     },
     "autoload": {
         "files": ["assertarraysubset-autoload.php"]

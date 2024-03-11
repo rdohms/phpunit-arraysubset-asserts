@@ -10,6 +10,7 @@ use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\SebastianBergmann\Comparator\ComparisonFailure as Phar_ComparisonFailure;
 use SebastianBergmann\Comparator\ComparisonFailure;
+use SebastianBergmann\Exporter\Exporter;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Traversable;
 
@@ -107,7 +108,9 @@ final class ArraySubset extends Constraint
      */
     public function toString(): string
     {
-        return 'has the subset ' . $this->exporter()->export($this->subset);
+        $exporter = method_exists($this, 'exporter') ? $this->exporter() : new Exporter();
+
+        return 'has the subset ' . $exporter->export($this->subset);
     }
 
     /**

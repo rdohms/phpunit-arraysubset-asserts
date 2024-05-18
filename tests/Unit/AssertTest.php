@@ -15,9 +15,7 @@ use PHPUnit\Util\InvalidArgumentHelper;
 use function class_exists;
 use function method_exists;
 
-/**
- * @requires PHPUnit >= 8
- */
+/** @requires PHPUnit >= 8 */
 final class AssertTest extends TestCase
 {
     public function testAssertArraySubsetPassesStrictConfig(): void

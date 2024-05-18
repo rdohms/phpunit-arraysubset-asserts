@@ -27,19 +27,13 @@ use function var_export;
  */
 final class ArraySubset extends Constraint
 {
-    /**
-     * @var iterable|mixed[]
-     */
+    /** @var iterable|mixed[] */
     private $subset;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $strict;
 
-    /**
-     * @param mixed[] $subset
-     */
+    /** @param mixed[] $subset */
     public function __construct(iterable $subset, bool $strict = false)
     {
         $this->strict = $strict;
@@ -63,7 +57,7 @@ final class ArraySubset extends Constraint
      * @throws ExpectationFailedException
      * @throws InvalidArgumentException|Exception
      */
-    public function evaluate($other, string $description = '', bool $returnResult = false): ?bool
+    public function evaluate($other, string $description = '', bool $returnResult = false): bool|null
     {
         //type cast $other & $this->subset as an array to allow
         //support in standard array functions.

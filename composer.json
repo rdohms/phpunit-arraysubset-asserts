@@ -13,9 +13,6 @@
             "email": "rdohms@gmail.com"
         }
     ],
-    "require-dev": {
-        "dms/coding-standard": "^9"
-    },
     "autoload": {
         "files": ["assertarraysubset-autoload.php"]
     },
@@ -28,5 +25,8 @@
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
+    },
+    "require-dev": {
+        "doctrine/coding-standard": "^9 || ^12.0"
     }
 }

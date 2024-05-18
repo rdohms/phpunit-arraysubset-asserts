@@ -14,22 +14,16 @@ use function array_key_exists;
 
 class ArrayAccessible implements ArrayAccess, IteratorAggregate
 {
-    /**
-     * @var mixed[]
-     */
+    /** @var mixed[] */
     private $array;
 
-    /**
-     * @param mixed[] $array
-     */
+    /** @param mixed[] $array */
     public function __construct(array $array = [])
     {
         $this->array = $array;
     }
 
-    /**
-     * @param mixed $offset
-     */
+    /** @param mixed $offset */
     public function offsetExists($offset): bool
     {
         return array_key_exists($offset, $this->array);
@@ -59,17 +53,13 @@ class ArrayAccessible implements ArrayAccess, IteratorAggregate
         }
     }
 
-    /**
-     * @param mixed $offset
-     */
+    /** @param mixed $offset */
     public function offsetUnset($offset): void
     {
         unset($this->array[$offset]);
     }
 
-    /**
-     * @return mixed[]
-     */
+    /** @return mixed[] */
     public function getIterator(): Traversable
     {
         return new ArrayIterator($this->array);

@@ -17,14 +17,10 @@ use Traversable;
 
 use function sprintf;
 
-/**
- * @requires PHPUnit >= 8
- */
+/** @requires PHPUnit >= 8 */
 final class ArraySubsetTest extends TestCase
 {
-    /**
-     * @return mixed[]
-     */
+    /** @return mixed[] */
     public static function evaluateDataProvider(): array
     {
         return [

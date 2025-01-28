@@ -8,8 +8,12 @@ use ArrayAccess;
 use ArrayObject;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\ExpectationFailedException;
-use PHPUnit\SebastianBergmann\Comparator\ComparisonFailure as Phar_ComparisonFailure;
+use PHPUnit\SebastianBergmann\Comparator\ComparisonFailure as ComparisonFailure_In_Phar_Old;
+use PHPUnit\SebastianBergmann\Exporter\Exporter as Exporter_In_Phar_Old;
+use PHPUnitPHAR\SebastianBergmann\Comparator\ComparisonFailure as ComparisonFailure_In_Phar;
+use PHPUnitPHAR\SebastianBergmann\Exporter\Exporter as Exporter_In_Phar;
 use SebastianBergmann\Comparator\ComparisonFailure;
+use SebastianBergmann\Exporter\Exporter;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use Traversable;
 
@@ -84,12 +88,7 @@ final class ArraySubset extends Constraint
             return null;
         }
 
-        // Support use of this library when running PHPUnit as a Phar.
-        if (class_exists(Phar_ComparisonFailure::class) === true) {
-            $class = Phar_ComparisonFailure::class;
-        } else {
-            $class = ComparisonFailure::class;
-        }
+        $class = self::getPHPUnitComparisonFailure();
 
         $f = new $class(
             $patched,
@@ -107,7 +106,51 @@ final class ArraySubset extends Constraint
      */
     public function toString(): string
     {
-        return 'has the subset ' . $this->exporter()->export($this->subset);
+        $exporter = self::getPHPUnitExporterObject();
+
+        return 'has the subset ' . $exporter->export($this->subset);
+    }
+
+    /**
+     * Helper function to obtain an instance of the Exporter class.
+     *
+     * @return SebastianBergmann\Exporter\Exporter|PHPUnitPHAR\SebastianBergmann\Exporter\Exporter|PHPUnit\SebastianBergmann\Exporter\Exporter
+     */
+    private static function getPHPUnitExporterObject()
+    {
+        if (class_exists('SebastianBergmann\Comparator\ComparisonFailure')) {
+            // Composer install or really old PHAR files.
+            return new Exporter();
+        }
+
+        if (class_exists('PHPUnitPHAR\SebastianBergmann\Comparator\ComparisonFailure')) {
+            // PHPUnit PHAR file for 8.5.38+, 9.6.19+, 10.5.17+ and 11.0.10+.
+            return new Exporter_In_Phar();
+        }
+
+        // PHPUnit PHAR file for < 8.5.38, < 9.6.19, < 10.5.17 and < 11.0.10.
+        return new Exporter_In_Phar_Old();
+    }
+
+    /**
+     * Helper function to obtain the class name of the ComparisonFailure class.
+     *
+     * @return string;
+     */
+    private static function getPHPUnitComparisonFailure()
+    {
+        if (class_exists('SebastianBergmann\Exporter\Exporter')) {
+            // Composer install or really old PHAR files.
+            return ComparisonFailure::class;
+        }
+
+        if (class_exists('PHPUnitPHAR\SebastianBergmann\Exporter\Exporter')) {
+            // PHPUnit PHAR file for 8.5.38+, 9.6.19+, 10.5.17+ and 11.0.10+.
+            return ComparisonFailure_In_Phar::class;
+        }
+
+        // PHPUnit PHAR file for < 8.5.38, < 9.6.19, < 10.5.17 and < 11.0.10.
+        return ComparisonFailure_In_Phar_Old::class;
     }
 
     /**
